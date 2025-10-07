@@ -1,4 +1,7 @@
 package com.example.umc9th.domain.mission.repository;
 
-public class MissionRepository {
+import com.example.umc9th.domain.mission.entity.Mission;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MissionRepository extends JpaRepository<Mission, Long> {
 }
