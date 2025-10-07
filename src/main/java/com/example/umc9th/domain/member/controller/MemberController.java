@@ -14,14 +14,4 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberQueryService memberQueryService;
-    private final ReviewRepository reviewRepository;
-
-    @GetMapping("/query-test")
-    public List<Review> queryTest(
-            @RequestParam String name
-    ){
-        List<Review> result = reviewRepository.searchReviewByLocation(name);
-        return result;
-    }
 }
