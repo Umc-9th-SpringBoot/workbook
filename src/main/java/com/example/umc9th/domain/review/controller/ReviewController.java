@@ -17,12 +17,12 @@ public class ReviewController {
 
     @GetMapping("/reviews/search")
     public List<Review> searchReview(
-            @RequestParam String query,
+            @RequestParam String filter,
             @RequestParam String type
-    ){
+    ) throws Exception {
 
         // 서비스에게 요청
-        List<Review> result = reviewQueryService.searchReview(query, type);
+        List<Review> result = reviewQueryService.searchReview(filter, type);
         return result;
     }
 }

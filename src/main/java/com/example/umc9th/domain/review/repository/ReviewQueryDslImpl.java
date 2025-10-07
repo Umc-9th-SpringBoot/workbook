@@ -4,7 +4,7 @@ import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.store.entity.QLocation;
 import com.example.umc9th.domain.store.entity.QStore;
-import com.querydsl.core.types.Predicate;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +18,10 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
     private final EntityManager em;
 
-    // 검색 API
+    // 내가 작성한 리뷰 보기 API
     @Override
-    public List<Review> searchReview(
-            Predicate predicate
+    public List<Review> findMyReview(
+            BooleanBuilder predicate
     ){
 
         // JPA 세팅
