@@ -12,4 +12,13 @@ public class TestConverter {
                 .testString(testing)
                 .build();
     }
+
+    // 객체 -> DTO
+    public static TestResDTO.Exception toExceptionDTO(
+            String exception
+    ){
+        return TestResDTO.Exception.builder()
+                .testString(exception)
+                .build();
+    }
 }
