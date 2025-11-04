@@ -1,7 +1,9 @@
 package com.example.umc9th.domain.member.entity;
 
 
+import com.example.umc9th.domain.member.entity.mapping.MemberFood;
 import com.example.umc9th.domain.member.enums.Gender;
+import com.example.umc9th.domain.mission.entity.mapping.MemberMission;
 import com.example.umc9th.domain.store.enums.Address;
 import com.example.umc9th.global.auth.enums.SocialType;
 import com.example.umc9th.global.entity.BaseEntity;
@@ -9,6 +11,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -22,7 +26,7 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "gender")
@@ -45,16 +49,22 @@ public class Member extends BaseEntity {
 
     @Column(name = "social_type")
     @Enumerated(EnumType.STRING)
-    private SocialType socialType;
+    private SocialType socialType = SocialType.LOCAL;
 
     @Column(name = "point")
-    private Integer point;
+    @Builder.Default
+    private Integer point = 0;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    // 양방향 매핑
+    @OneToMany(mappedBy = "member")
+    @Builder.Default
+    private List<MemberFood> memberFood = new ArrayList<>();
 
     // 함수
     public void update(String newName){
