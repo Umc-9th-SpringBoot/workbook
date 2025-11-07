@@ -29,11 +29,14 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
     // 회원가입
     @Override
+    @Transactional
     public MemberResDTO.JoinDTO signup(
             MemberReqDTO.JoinDTO dto
     ){
         // 사용자 생성
         Member member = MemberConverter.toMember(dto);
+        // 사용자 먼저 영속성 추가
+        memberRepository.save(member);
 
         List<MemberFood> memberFood = dto.preferCategory().stream()
                 .map(id -> MemberFood.builder()
@@ -46,8 +49,6 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
             memberFoodRepository.saveAll(memberFood);
 
-        // DB 적용
-        memberRepository.save(member);
 
         // 응답 DTO 생성
         return MemberConverter.toJoinDTO(member);
