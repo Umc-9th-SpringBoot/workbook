@@ -12,6 +12,9 @@ public enum MemberErrorCode implements BaseErrorCode {
     NOT_FOUND(HttpStatus.NOT_FOUND,
             "MEMBER404_1",
             "해당 사용자를 찾지 못했습니다."),
+    INVALID(HttpStatus.BAD_REQUEST,
+            "AUTH400_1",
+            "아이디 혹은 비밀번호가 틀렸습니다."),
     ;
 
     private final HttpStatus status;
