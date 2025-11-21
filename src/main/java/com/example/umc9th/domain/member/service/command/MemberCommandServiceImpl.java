@@ -11,6 +11,7 @@ import com.example.umc9th.domain.member.exception.code.FoodErrorCode;
 import com.example.umc9th.domain.member.repository.FoodRepository;
 import com.example.umc9th.domain.member.repository.MemberFoodRepository;
 import com.example.umc9th.domain.member.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
     // 회원가입
     @Override
+    @Transactional
     public MemberResDTO.JoinDTO signup(
             MemberReqDTO.JoinDTO dto
     ){
